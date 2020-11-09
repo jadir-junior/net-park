@@ -5,11 +5,23 @@
       &nbsp; - &nbsp;
       <div>{{ extract.garagem }}</div>
     </div>
-    <div>{{ extract.valor | currency: 'BRL':true }}</div>
+    <div class="card-extract--value">
+      {{ (extract.valor | currency: 'BRL':true).replace('.', ',') }}
+    </div>
   </div>
-  <div>{{ extract.endereco }}</div>
-  <div>
-    <div>Data entrada: {{ extract.dataEntrada | date: 'dd/MM/yyyy' }}</div>
-    <div>Data saida: {{ extract.dataEntrada | date: 'dd/MM/yyyy' }}</div>
+  <div class="card-extract--address">{{ extract.endereco | titlecase }}</div>
+  <div class="card-extract--container-date">
+    <div>
+      Data entrada:
+      <span class="card-extract--date">{{
+        extract.dataEntrada | date: 'dd/MM/yyyy'
+      }}</span>
+    </div>
+    <div>
+      Data saida:
+      <span class="card-extract--date">{{
+        extract.dataEntrada | date: 'dd/MM/yyyy'
+      }}</span>
+    </div>
   </div>
 </div>

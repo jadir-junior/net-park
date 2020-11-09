@@ -1,6 +1,6 @@
 {
   "appId": "io.ionic.starter",
-  "appName": "netPark",
+  "appName": "Netpark",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

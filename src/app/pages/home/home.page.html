@@ -11,8 +11,10 @@
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <strong>Bem vindo ao NetPark</strong>
-    <ion-button [routerLink]="['/extract']" color="primary">
+    <div>
+      <strong>Bem vindo ao NetPark</strong>
+    </div>
+    <ion-button (click)="goToExtract()" color="primary">
       Vá Para tela de Extrato!
     </ion-button>
   </div>

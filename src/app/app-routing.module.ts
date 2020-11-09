@@ -11,18 +11,18 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./home/home.module').then((m) => m.HomePageModule),
+      import('./pages/home/home.module').then((m) => m.HomePageModule),
     canActivate: [AuthGuard],
   },
   {
     path: 'login',
     loadChildren: () =>
-      import('./login/login.module').then((m) => m.LoginPageModule),
+      import('./pages/login/login.module').then((m) => m.LoginPageModule),
   },
   {
     path: 'extract',
     loadChildren: () =>
-      import('./extract/extract.module').then((m) => m.ExtractPageModule),
+      import('./pages/extract/extract.module').then((m) => m.ExtractPageModule),
     canActivate: [AuthGuard],
   },
 ];

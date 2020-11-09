@@ -5,10 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ExtractPageRoutingModule } from './extract-routing.module';
+import { ComponentsModule } from '../../components/components.module';
 
 import { ExtractPage } from './extract.page';
-
-import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [

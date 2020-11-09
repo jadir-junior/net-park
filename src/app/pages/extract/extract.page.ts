@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { extract } from '../mock/extract';
-import { Extract } from '../model/extract';
-import { ExtractService } from '../services/extract/extract.service';
+
+import { Extract } from '../../model/extract';
+import { ExtractService } from '../../services/extract/extract.service';
 
 @Component({
   selector: 'app-extract',

@@ -76,6 +76,11 @@
   --ion-color-light-tint: #f5f6f9;
 }
 
+body {
+  --ion-toolbar-background: #1f3779;
+  --ion-toolbar-color: #ffffff;
+}
+
 @media (prefers-color-scheme: dark) {
   /*
    * Dark Colors

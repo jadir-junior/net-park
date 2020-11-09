@@ -4,7 +4,7 @@
       <form [formGroup]="loginForm" (submit)="login(loginForm)">
         <div class="container-image">
           <img
-            src="/assets/images/netpark-removebg-preview.png"
+            src="/assets/images/netpark-blue.png"
             alt="Net Park Logo"
             class="img-logo"
           />
@@ -19,12 +19,9 @@
             [brmasker]="{person: true}"
           ></ion-input>
         </ion-item>
-        <div
-          *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)"
-          class="error-message"
-        >
+        <div *ngIf="cpf.invalid && (cpf.touched)" class="error-message">
           <div *ngIf="cpf.errors.required">CPF é obrigatório.</div>
-          <div *ngIf="cpf.errors.minLength">O CPF deve ter 11 digitos.</div>
+          <div *ngIf="cpf.errors.minlength">O CPF deve ter 11 digitos.</div>
         </div>
         <ion-item>
           <ion-label position="floating">Senha</ion-label>

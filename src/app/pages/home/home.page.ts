@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthenticationService } from '../services/authentication/authentication.service';
+import { Router } from '@angular/router';
+
 import { Brightness } from '@ionic-native/brightness/ngx';
+
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +15,8 @@ export class HomePage implements OnInit, OnDestroy {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private brightness: Brightness
+    private brightness: Brightness,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -30,6 +34,12 @@ export class HomePage implements OnInit, OnDestroy {
 
   async setBrightness(value) {
     await this.brightness.setBrightness(value);
+  }
+
+  goToExtract() {
+    // setando a luz para default, por que o service da rota navega ela da um push no estado e não destroy o component
+    this.setBrightness(this.brightnessDefault);
+    this.router.navigate(['extract']);
   }
 
   logout(): void {

@@ -6,9 +6,10 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { IonicStorageModule } from '@ionic/storage';
 
 describe('AppComponent', () => {
-
   let statusBarSpy;
   let splashScreenSpy;
   let platformReadySpy;
@@ -21,6 +22,7 @@ describe('AppComponent', () => {
     platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
 
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule, IonicStorageModule],
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
@@ -46,5 +48,4 @@ describe('AppComponent', () => {
   });
 
   // TODO: add more tests!
-
 });

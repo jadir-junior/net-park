@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Authenticated } from '../model/authenticated';
-import { AuthenticationService } from '../services/authentication/authentication.service';
+
+import { Authenticated } from '../../model/authenticated';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { removeCharactersSpecialOfDigits } from '../../utils';
 
 @Component({
   selector: 'app-login',
@@ -35,12 +37,20 @@ export class LoginPage implements OnInit {
     return this.loginForm.get('password');
   }
 
-  async login(user): Promise<void> {
+  async login({ value, valid }): Promise<void> {
+    if (!valid) {
+      return;
+    }
+
+    value.cpf = removeCharactersSpecialOfDigits(value.cpf);
+    const user = value;
+
     try {
       const authenticated: Authenticated = await this.authenticationService.login(
         user
       );
       await this.authenticationService.setTokenStorage(authenticated);
+      this.loginForm.reset();
     } catch (err) {}
   }
 }
