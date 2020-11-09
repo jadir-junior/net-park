@@ -1,0 +1,7 @@
+{
+  "name": "netPark",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
