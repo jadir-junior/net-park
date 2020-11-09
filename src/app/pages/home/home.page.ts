@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 import { Brightness } from '@ionic-native/brightness/ngx';
 
@@ -16,7 +17,8 @@ export class HomePage implements OnInit, OnDestroy {
   constructor(
     private authenticationService: AuthenticationService,
     private brightness: Brightness,
-    private router: Router
+    private router: Router,
+    private platform: Platform
   ) {}
 
   ngOnInit() {

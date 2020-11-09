@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { ExtractPage } from './extract.page';
 
@@ -9,8 +11,12 @@ describe('ExtractPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExtractPage ],
-      imports: [IonicModule.forRoot()]
+      declarations: [ExtractPage],
+      imports: [
+        IonicModule.forRoot(),
+        RouterTestingModule,
+        IonicStorageModule.forRoot(),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ExtractPage);

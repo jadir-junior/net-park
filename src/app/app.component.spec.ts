@@ -22,7 +22,7 @@ describe('AppComponent', () => {
     platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
 
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, IonicStorageModule],
+      imports: [RouterTestingModule, IonicStorageModule.forRoot()],
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
