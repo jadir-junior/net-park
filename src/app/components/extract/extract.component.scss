@@ -1,0 +1,16 @@
+.card-extract {
+  background-color: #1f3779;
+  color: white;
+  margin: 10px;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.card-extract--header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-extract--header--location {
+  display: flex;
+}

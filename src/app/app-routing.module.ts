@@ -19,6 +19,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginPageModule),
   },
+  {
+    path: 'extract',
+    loadChildren: () =>
+      import('./extract/extract.module').then((m) => m.ExtractPageModule),
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

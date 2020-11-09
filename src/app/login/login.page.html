@@ -1,9 +1,48 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <button (click)="login()">Login</button>
+<ion-content class="content" [fullscreen]="true">
+  <ion-grid class="align-vertically">
+    <ion-card class="card-login">
+      <form [formGroup]="loginForm" (submit)="login(loginForm)">
+        <div class="container-image">
+          <img
+            src="/assets/images/netpark-removebg-preview.png"
+            alt="Net Park Logo"
+            class="img-logo"
+          />
+        </div>
+        <ion-item>
+          <ion-label position="floating">CPF</ion-label>
+          <ion-input
+            type="tel"
+            name="cpf"
+            formControlName="cpf"
+            maxlength="14"
+            [brmasker]="{person: true}"
+          ></ion-input>
+        </ion-item>
+        <div
+          *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)"
+          class="error-message"
+        >
+          <div *ngIf="cpf.errors.required">CPF é obrigatório.</div>
+          <div *ngIf="cpf.errors.minLength">O CPF deve ter 11 digitos.</div>
+        </div>
+        <ion-item>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input type="password" name="password" formControlName="password">
+          </ion-input>
+        </ion-item>
+        <div
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="error-message"
+        >
+          <div *ngIf="password.errors.required">Senha é obrigatória.</div>
+        </div>
+        <div class="container-button">
+          <ion-button type="submit" color="primary" expand="block"
+            >login</ion-button
+          >
+        </div>
+      </form>
+    </ion-card>
+  </ion-grid>
 </ion-content>

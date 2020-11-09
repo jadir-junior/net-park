@@ -3,12 +3,15 @@ import { Router } from '@angular/router';
 import { Platform, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
+import { Authenticated } from 'src/app/model/authenticated';
+import { authenticated } from '../../mock/login';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
   authState = new BehaviorSubject(false);
+  token = null;
 
   constructor(
     private router: Router,
@@ -25,19 +28,22 @@ export class AuthenticationService {
     this.storage.get('TOKEN').then((response) => {
       if (response) {
         this.authState.next(true);
+        this.token = response.apiToken;
       }
     });
   }
 
-  login() {
-    var dummy_response = {
-      user_id: '007',
-      user_name: 'test',
-    };
+  login(user): Promise<Authenticated> {
+    return new Promise((resolve, reject) => {
+      resolve(authenticated);
+    });
+  }
 
-    this.storage.set('TOKEN', dummy_response).then((response) => {
+  setTokenStorage(token) {
+    this.storage.set('TOKEN', token).then((response) => {
       this.router.navigate(['home']);
       this.authState.next(true);
+      this.token = response.apiToken;
     });
   }
 
@@ -45,10 +51,15 @@ export class AuthenticationService {
     this.storage.remove('TOKEN').then(() => {
       this.router.navigate(['login']);
       this.authState.next(false);
+      this.token = null;
     });
   }
 
   isAuthenticated() {
     return this.authState.value;
+  }
+
+  getToken() {
+    return this.token;
   }
 }

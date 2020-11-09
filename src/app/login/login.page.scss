@@ -1,0 +1,39 @@
+ion-content {
+  --background: linear-gradient(
+    180deg,
+    rgba(0, 251, 226, 1) 0%,
+    rgba(0, 251, 226, 1) 46%,
+    rgba(0, 251, 226, 0.5130427170868348) 100%
+  );
+}
+
+.card-login {
+  width: 100%;
+  padding: 20px 40px;
+}
+
+.align-vertically {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-logo {
+  width: 120px;
+  height: 120px;
+}
+
+.error-message {
+  margin-top: 10px;
+  color: red;
+}
+
+.container-image {
+  width: 100%;
+  text-align: center;
+}
+
+.container-button {
+  margin-top: 20px;
+}

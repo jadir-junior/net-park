@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Extrato</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="!extracts">
+    <p>Nenhum extrato foi encontrado!</p>
+  </div>
+  <ion-list *ngIf="extracts">
+    <extract *ngFor="let extract of extracts" [extract]="extract"></extract>
+  </ion-list>
+</ion-content>
