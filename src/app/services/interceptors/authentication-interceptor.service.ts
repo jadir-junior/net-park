@@ -26,10 +26,15 @@ export class AuthenticationInterceptorService implements HttpInterceptor {
       });
     }
 
+    request = request.clone({
+      setHeaders: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
+
     return next.handle(request).pipe(
-      catchError((response: any) => {
+      catchError((response: HttpErrorResponse) => {
         if (response.status === 401 || response.status === 404) {
-          response.message = 'Usuário não autenticado';
           this.authenticationService.logout();
         }
 
