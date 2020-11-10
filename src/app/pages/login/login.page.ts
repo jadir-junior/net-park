@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 
 import { Authenticated } from '../../model/authenticated';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
@@ -15,7 +16,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastController: ToastController
   ) {}
 
   ngOnInit() {
@@ -51,6 +53,13 @@ export class LoginPage implements OnInit {
       );
       await this.authenticationService.setTokenStorage(authenticated);
       this.loginForm.reset();
-    } catch (err) {}
+    } catch (err) {
+      const toast = await this.toastController.create({
+        message: err.message,
+        duration: 2000,
+        color: 'danger',
+      });
+      toast.present();
+    }
   }
 }
