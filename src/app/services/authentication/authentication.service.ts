@@ -1,9 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
 import { Authenticated } from 'src/app/model/authenticated';
+import { environment } from 'src/environments/environment';
 import { authenticated } from '../../mock/login';
 
 @Injectable({
@@ -17,6 +19,7 @@ export class AuthenticationService {
     private router: Router,
     private storage: Storage,
     private platform: Platform,
+    private http: HttpClient,
     public toastController: ToastController
   ) {
     this.platform.ready().then(() => {
@@ -33,10 +36,8 @@ export class AuthenticationService {
     });
   }
 
-  login(user): Promise<Authenticated> {
-    return new Promise((resolve, reject) => {
-      resolve(authenticated);
-    });
+  login(user): Promise<any> {
+    return this.http.post(`${environment.BASE_URL}/login`, user).toPromise();
   }
 
   setTokenStorage(token) {

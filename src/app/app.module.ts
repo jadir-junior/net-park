@@ -6,10 +6,12 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { IonicStorageModule } from '@ionic/storage';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AuthenticationInterceptorService } from './services/interceptors/authentication-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,11 +23,17 @@ import { AppRoutingModule } from './app-routing.module';
     }),
     AppRoutingModule,
     IonicStorageModule.forRoot(),
+    HttpClientModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
