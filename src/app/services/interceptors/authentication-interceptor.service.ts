@@ -27,8 +27,10 @@ export class AuthenticationInterceptorService implements HttpInterceptor {
     }
 
     return next.handle(request).pipe(
-      catchError((response: HttpErrorResponse) => {
-        if (response.status === 401) {
+      catchError((response: any) => {
+        if (response.status === 401 || response.status === 404) {
+          response.message = 'Usuário não autenticado';
+          this.authenticationService.logout();
         }
 
         return throwError(response);
