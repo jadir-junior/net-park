@@ -1,4 +1,4 @@
-<div class="card-extract" (click)="openRoute(extract.endereco)">
+<div class="card-extract">
   <div class="card-extract--header">
     <div class="card-extract--header--location">
       <div>{{ extract.codGaragem }}</div>
@@ -22,6 +22,12 @@
       <span class="card-extract--date">{{
         extract.dataEntrada | date: 'dd/MM/yyyy'
       }}</span>
+    </div>
+    <div class="container-buttons">
+      <ion-button (click)="openRoute(extract.endereco)" color="secondary"
+        ><ion-icon slot="start" name="location-outline"></ion-icon> Siga até o
+        estacionamento!</ion-button
+      >
     </div>
   </div>
 </div>

@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
 
 import { Brightness } from '@ionic-native/brightness/ngx';
 
@@ -17,18 +16,23 @@ export class HomePage implements OnInit, OnDestroy {
   constructor(
     private authenticationService: AuthenticationService,
     private brightness: Brightness,
-    private router: Router,
-    private platform: Platform
+    private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewDidEnter() {
     this.getBrightness();
     this.setBrightness(1);
+    console.log('ionViewDidEnter');
   }
 
-  ngOnDestroy() {
+  ionViewDidLeave() {
     this.setBrightness(this.brightnessDefault);
+    console.log('ionViewDidLeave');
   }
+
+  ngOnDestroy() {}
 
   async getBrightness() {
     this.brightnessDefault = await this.brightness.getBrightness();
@@ -40,7 +44,7 @@ export class HomePage implements OnInit, OnDestroy {
 
   goToExtract() {
     // setando a luz para default, por que o service da rota navega ela da um push no estado e não destroy o component
-    this.setBrightness(this.brightnessDefault);
+    // this.setBrightness(this.brightnessDefault);
     this.router.navigate(['extract']);
   }
 
