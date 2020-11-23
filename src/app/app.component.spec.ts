@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IonicStorageModule } from '@ionic/storage';
+import { LoginPageModule } from './pages/login/login.module';
 
 describe('AppComponent', () => {
   let statusBarSpy;
@@ -15,14 +16,24 @@ describe('AppComponent', () => {
   let platformReadySpy;
   let platformSpy;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
     splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
     platformReadySpy = Promise.resolve();
-    platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
+    platformSpy = jasmine.createSpyObj('Platform', {
+      ready: platformReadySpy,
+    });
 
-    TestBed.configureTestingModule({
-      imports: [RouterTestingModule, IonicStorageModule.forRoot()],
+    await TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule.withRoutes([
+          {
+            path: 'login',
+            component: LoginPageModule,
+          },
+        ]),
+        IonicStorageModule.forRoot(),
+      ],
       declarations: [AppComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
@@ -31,7 +42,7 @@ describe('AppComponent', () => {
         { provide: Platform, useValue: platformSpy },
       ],
     }).compileComponents();
-  }));
+  });
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -39,13 +50,13 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should initialize the app', async () => {
+  it('should initialize the app', fakeAsync(() => {
     TestBed.createComponent(AppComponent);
     expect(platformSpy.ready).toHaveBeenCalled();
-    await platformReadySpy;
+    tick();
     expect(statusBarSpy.styleDefault).toHaveBeenCalled();
     expect(splashScreenSpy.hide).toHaveBeenCalled();
-  });
+  }));
 
   // TODO: add more tests!
 });
