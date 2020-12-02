@@ -21,7 +21,7 @@
     "@angular/platform-browser": "~11.0.2",
     "@angular/platform-browser-dynamic": "~11.0.2",
     "@angular/router": "~11.0.2",
-    "@capacitor/android": "^2.4.3",
+    "@capacitor/android": "^2.4.4",
     "@capacitor/core": "2.4.3",
     "@ionic-native/brightness": "^5.30.0",
     "@ionic-native/core": "^5.30.0",
